@@ -43,50 +43,6 @@ window.addEventListener('DOMContentLoaded', function () {
             closeMenu(item, submenu)
         })
     }
-    // Меню
-
-    // const menu = document.querySelector('.header__menu')
-    // const header = document.querySelector('.header')
-    // let lock = false
-    // const burger = document.querySelector('.header__burger')
-    //
-    // burger.addEventListener('click', function() {
-    //
-    //     if (lock) return
-    //
-    //     lock = true
-    //
-    //     toggleMenu()
-    //
-    //     setTimeout(() => {
-    //         lock = false
-    //     }, delay)
-    // })
-    //
-    // function toggleMenu() {
-    //     burger.classList.toggle('active')
-    //     menu.classList.toggle('active')
-    //     header.classList.toggle('active')
-    //     lockBody()
-    // }
-
-
-    function lockBody() {
-        const scrollWidth = window.innerWidth - document.body.clientWidth
-
-        document.body.classList.toggle('lock')
-
-        document.body.style.paddingRight = scrollWidth + 'px'
-    }
-
-    // header.addEventListener('click', function(e) {
-    //     if (
-    //         document.querySelector('.header__menu.active')
-    //         && !e.target.closest('.header__burger')
-    //     ) {
-    //         toggleMenu()
-    //     }
-    // })
 
 
     if (document.querySelector('.cases__slider')) {
@@ -131,7 +87,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         spaceBetween: 8,
                         navigation: {
                             nextEl: '.services__button-next',
-                       
+
                         },
                         watchOverflow: true,
                         breakpoints: {
@@ -154,92 +110,92 @@ window.addEventListener('DOMContentLoaded', function () {
         window.addEventListener("resize", initSwiper);
     }
 
-    // if (document.querySelector('.banner-page__body')) {
-    //     const bannerSlider = new Swiper('.banner-page__body', {
-    //         spaceBetween: 16,
-    //         slidesPerView: 1,
-    //         centeredSlides: true,
-    //         speed: 1000,
-    //         effect: 'fade',
-    //         fadeEffect: { crossFade: true },
-    //         loop: true,
-    //         autoplay: {
-    //             delay: 2000,
-    //         },
-    //         breakpoints: {
-    //             767.98: {
-    //                 slidesPerGroup: 4,
+    if (document.querySelector('.tariff__slider')) {
 
-    //             },
-    //             575.98: {
-    //                 slidesPerGroup: 3,
-    //             }
-    //         },
+        let swiperInstance = null;
 
-    //         navigation: {
-    //             nextEl: '.banner-page__button-next',
-    //             prevEl: '.banner-page__button-prev'
-    //         },
-    //         pagination: {
-    //             el: ".banner-page__dots",
-    //             clickable: true,
-    //         },
-    //     })
+        function initSwiper() {
+            if (window.innerWidth < 992) {
+                if (!swiperInstance) {
+                    swiperInstance = new Swiper(".tariff__slider", {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                        navigation: {
+                            nextEl: '.tariff__button-next',
+                            prevEl: '.tariff__button-prev'
+                        },
 
-    // }
+                        watchOverflow: true,
+                        breakpoints: {
+                            767.98: {
+                                slidesPerView: 3,
+                            }
+                        },
+                    });
+                }
+            } else {
+                if (swiperInstance) {
+                    swiperInstance.destroy(true, true);
+                    swiperInstance = null;
+                }
+            }
+        }
+
+        initSwiper();
+        window.addEventListener("resize", initSwiper);
+    }
 
 
-    // const baseSliders = document.querySelectorAll('.base-slider__body')
-    //
-    // if (baseSliders.length > 0) {
-    //     for (let index = 0; index < baseSliders.length; index++) {
-    //         const slider = baseSliders[index]
-    //
-    //         new Swiper(slider, {
-    //             spaceBetween: 16,
-    //             slidesPerView: 1.2,
-    //
-    //             speed: 800,
-    //
-    //
-    //             breakpoints: {
-    //                 991.98: {
-    //                     spaceBetween: 16,
-    //                     slidesPerView: 4,
-    //
-    //                 },
-    //                 767.98: {
-    //                     spaceBetween: 16,
-    //                     slidesPerGroup: 3,
-    //                 },
-    //                 567.98: {
-    //                     spaceBetween: 16,
-    //                     slidesPerGroup: 2.2,
-    //                 }
-    //             },
-    //
-    //             navigation: {
-    //                 nextEl: slider.closest('.base-slider').querySelector('.base-slider__button-prev'),
-    //                 prevEl: slider.closest('.base-slider').querySelector('.base-slider__button-next')
-    //             },
-    //
-    //         })
-    //         // wi
-    //     }
-    // }
+    if (document.querySelector('#calculator-user-slider')) {
+        noUiSlider.create(document.querySelector('#calculator-user-slider'), {
+            start: [100, 5000],
+            tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+            range: {
+                'min': 100,
+                'max': 5000
+            }
+        });
+    }
 
-    //
-    //
-    // fixHeader()
-    // function fixHeader() {
-    //     if (document.body.scrollTop > 10 && !header.classList.contains('fix')) {
-    //         header.classList.add('fix')
-    //     }
-    //     if (document.body.scrollTop <= 0 && header.classList.contains('fix')) {
-    //         header.classList.remove('fix')
-    //     }
-    // }
+    if (document.querySelector('#calculator-storage-slider')) {
+        noUiSlider.create(document.querySelector('#calculator-storage-slider'), {
+            start: [10, 5000],
+            tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+            range: {
+                'min': 10,
+                'max': 5000
+            }
+        });
+    }
 
-    // window.addEventListener('scroll', fixHeader)
+    if (document.querySelector('#calculator-managers-slider')) {
+        noUiSlider.create(document.querySelector('#calculator-managers-slider'), {
+            start: [1, 50],
+            tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+            range: {
+                'min': 1,
+                'max': 50
+            }
+        });
+    }
+
+    
+
+    if (document.querySelector('.slider-flexibility__main')) {
+        const flixibilitySlider = new Swiper(".slider-flexibility__main", {
+            slidesPerView: 1,
+            spaceBetween: 8,
+            navigation: {
+                nextEl: '.slider-flexibility__button-next',
+                prevEl: '.slider-flexibility__button-prev',
+            },
+            pagination: {
+                el: '.slider-flexibility__dots',
+                clickable: true,
+            },
+            watchOverflow: true,
+        });
+    }
+
 
 })
